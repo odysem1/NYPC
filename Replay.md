@@ -36,7 +36,7 @@
 
 유동적인 전략 선택을 구현하기 전, 간단한 공격형/성장형 전략을 가진 AI를 하나씩 만들어 보는 것이 좋겠다고 생각해 1차 목표를 설정했습니다.
 
-### Defensive Expansion v1 - 
+### Defensive Expansion v1 - (2026.06.29 ~ )
 
 #### 1. 구체적인 전략 수립 - LLM 활용
 
@@ -44,6 +44,15 @@ LLM에게 지금까지의 흐름을 설명한 뒤에 약간 더 구체적인 전
 
 ![defensive1](./images/defensive-v1-GPT.PNG)
 
+위의 전략을 기초로 LLM의 도움을 받아 첫 번째 공격형 AI를 설계해 보았습니다.
+
+#### 2. Helper functions
+
+구체적인 Decide 함수를 구현하기 전에, 전략 업데이트와 상관없이 앞으로도 사용할 helper function을 몇 개 구현했습니다.
+
+`finding_building`, `count_warriors_at`, `count_my_warriors`, `has_enemy_warrior`는 그 지점에 기지 또는 내/상대 전사가 있는지 확인해서 리턴해줍니다.
+
+`already_moving_to`는 어떤 전사가 목적지가 이미 정해져 있는지 아닌지 리턴해줍니다.
 
 
 

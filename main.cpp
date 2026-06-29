@@ -506,6 +506,40 @@ static void emit_end() { std::cout << "END" << std::endl; }
 //////////////////////////////////
 //// WRITE YOUR STRATEGY HERE ////
 //////////////////////////////////
+
+static const Building *find_building(const GameState &S, int region){
+    for (const auto &b: S.buildings){
+        if (b.region == region){
+            return &b;
+        }
+    }
+    return nullptr;    
+}
+
+static int count_warriors_at(const GameState &S, Side side, int region){
+    int cnt = 0;
+    for (const auto &w : S.warriors){
+        if (w.id.side == side && w.region == region){
+            ++cnt;
+        }
+    }
+    return cnt;
+}
+
+static int count_my_warriors(const GameState &S, const GameMap &M){
+    int cnt = 0;
+    for (const auto &w : S.warriors){
+        if (w.id.side == M.my_side){
+            ++cnt;
+        }
+    }
+    return cnt;
+}
+
+static bool has_enemy_warrior(const GameState &S, const GameMap &M, int region){
+    return count_warriors_at(S, opposite(M.my_side), region) > 0;
+}
+
 static Actions decide(const GameState &S, const GameMap &M, const Paths &P,
                       int turn) {
   Actions a;
